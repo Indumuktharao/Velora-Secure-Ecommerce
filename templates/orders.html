@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order history — Velora</title><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head>
+<body><div class="announcement">YOUR LITTLE ORDER CORNER <span>✦</span> DEMO STORE</div><header class="nav-wrap"><a class="brand" href="/"><span class="brand-mark">v.</span><span>velora<small>THE EVERYDAY EDIT</small></span></a><nav><a href="/">Shop</a><a class="active" href="/orders">Order history</a></nav><a class="nav-cta" href="/">Back to shop <span>↗</span></a></header>
+<main class="orders-page"><div class="eyebrow">THE PAPER TRAIL</div><h1>Your order <em>history.</em></h1><p class="orders-intro">Every successful demo checkout, gathered in one place.</p>
+{% if orders %}
+<div class="table-wrap"><table><thead><tr><th>ORDER</th><th>CUSTOMER</th><th>PRODUCT</th><th>QTY</th><th>TOTAL</th><th>PAYMENT</th><th>DATE</th></tr></thead><tbody>
+{% for o in orders %}<tr><td>#{{ o[0] }}</td><td>{{ o[1] }}</td><td>{{ o[2] }}</td><td>{{ o[3] }}</td><td>₹{{ "%.2f"|format(o[4]) }}</td><td><span class="status">{{ o[5] }}</span></td><td>{{ o[6] }}</td></tr>{% endfor %}
+</tbody></table></div>
+{% else %}<div class="empty-state"><span>✳</span><h2>No orders just yet.</h2><p>Place a demo order and it will appear here after the server saves it.</p><a class="primary-link" href="/">Explore the collection ↗</a></div>{% endif %}
+</main><footer><a class="brand footer-brand" href="/"><span class="brand-mark">v.</span><span>velora<small>THE EVERYDAY EDIT</small></span></a><p>Student project demonstration · Secure E-Commerce Network</p><a href="/">Back to shop ↗</a></footer></body></html>
